@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="layout_base_text_style_24">
+        <item name="android:textSize">@dimen/sp_24</item>
+        <item name="android:textColor">@color/layout_base_white_default</item>
+    </style>
+
+    <style name="layout_base_text_style_16_light_blue">
+        <item name="android:textSize">@dimen/sp_16</item>
+        <item name="android:textColor">@color/layout_base_light_blue</item>
+    </style>
+
+    <style name="layout_base_text_style_16">
+        <item name="android:textSize">@dimen/sp_16</item>
+        <item name="android:textColor">@color/layout_base_white_default</item>
+    </style>
+
+    <style name="layout_base_text_style_14_light_white">
+        <item name="android:textSize">@dimen/sp_14</item>
+        <item name="android:textColor">@color/layout_base_light_white</item>
+    </style>
+
+    <style name="layout_base_text_style_14">
+        <item name="android:textSize">@dimen/sp_14</item>
+        <item name="android:textColor">@color/layout_base_white_default</item>
+    </style>
+
+    <style name="layout_base_text_style_14_light_blue">
+        <item name="android:textSize">@dimen/sp_14</item>
+        <item name="android:textColor">@color/layout_base_light_blue</item>
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <item name="android:statusBarColor">@android:color/black</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="layout_base_text_style_14_gray">
+        <item name="android:textSize">@dimen/sp_14</item>
+        <item name="android:textColor">@color/layout_base_gray</item>
+    </style>
+
+    <style name="layout_base_text_style_12_light_blue">
+        <item name="android:textSize">@dimen/sp_12</item>
+        <item name="android:textColor">@color/layout_base_light_blue</item>
+    </style>
+
+    <style name="layout_base_text_style_12">
+        <item name="android:textSize">@dimen/sp_12</item>
+        <item name="android:textColor">@color/layout_base_white_default</item>
+    </style>
+
+    <style name="layout_base_text_style_12_light_white">
+        <item name="android:textSize">@dimen/sp_12</item>
+        <item name="android:textColor">@color/layout_base_light_white</item>
+    </style>
+
+    <style name="layout_base_text_style_12_gray">
+        <item name="android:textSize">@dimen/sp_12</item>
+        <item name="android:textColor">@color/layout_base_gray</item>
+    </style>
+
+
+    <style name="layout_base_text_style_10">
+        <item name="android:textSize">@dimen/sp_10</item>
+        <item name="android:textColor">@color/layout_base_white_default</item>
+    </style>
+
+    <style name="layout_base_text_style_10_gray">
+        <item name="android:textSize">@dimen/sp_10</item>
+        <item name="android:textColor">@color/layout_base_gray</item>
+    </style>
+
+    <style name="layout_base_text_style_10_light_white">
+        <item name="android:textSize">@dimen/sp_10</item>
+        <item name="android:textColor">@color/layout_base_light_white</item>
+    </style>
+
+
+    <style name="layout_base_text_style_9_light_white">
+        <item name="android:textSize">@dimen/sp_9</item>
+        <item name="android:textColor">@color/layout_base_light_white</item>
+    </style>
+
+
+    <style name="layout_base_text_style_8_gray">
+        <item name="android:textSize">@dimen/sp_8</item>
+        <item name="android:textColor">@color/layout_base_gray</item>
+    </style>
+
+    <style name="layout_base_text_style_13_gray">
+        <item name="android:textSize">@dimen/sp_13</item>
+        <item name="android:textColor">@color/layout_base_gray</item>
+    </style>
+
+    <style name="layout_base_input_dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">#00000000</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="AppTheme.TransparentStatusBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item> <!-- 4.4+兼容 -->
+        <item name="android:statusBarColor">@android:color/transparent</item> <!-- 5.0+ -->
+        <item name="android:windowLightStatusBar">true</item> <!-- 状态栏图标深色 -->
+    </style>
+</resources>

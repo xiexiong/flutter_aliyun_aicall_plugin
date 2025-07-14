@@ -1,0 +1,73 @@
+group = "com.example.flutter_aliyun_aicall_plugin"
+version = "1.0"
+
+buildscript {
+    ext.kotlin_version = "1.8.22"
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.2.1")
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+apply plugin: "com.android.library"
+
+android {
+    namespace = "com.szxm.av"
+
+    compileSdk = 35
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    sourceSets {
+        main.java.srcDirs += "src/main/kotlin"
+        test.java.srcDirs += "src/test/kotlin"
+    }
+
+    defaultConfig {
+        minSdk = 21
+    }
+
+    dependencies {
+        testImplementation("junit:junit:4.13.2")
+        testImplementation("org.mockito:mockito-core:5.0.0")
+        implementation 'com.aliyun:artcaiclllkit:1.0.0'
+        implementation 'com.aliyun:alivcsdk_artc:1.0.0'
+        implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+        implementation 'com.orhanobut:dialogplus:1.11'
+        implementation 'com.base.recycler:adapter_helper:1.0.0'
+        implementation 'androidx.recyclerview:recyclerview:1.3.2'
+        implementation 'io.noties.markwon:core:4.6.2'
+        implementation 'io.noties.markwon:image:4.6.2'
+        implementation 'io.noties.markwon:image-glide:4.6.2'
+        implementation 'io.github.scwang90:refresh-layout-kernel:2.1.0'
+        implementation 'io.github.scwang90:refresh-header-classics:2.1.0'
+        implementation 'io.github.scwang90:refresh-footer-classics:2.1.0'
+        implementation 'com.airbnb.mjar:lottie:1.0.0'
+        implementation 'androidx.appcompat:appcompat:1.6.1'
+        implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    }
+
+    testOptions {
+        unitTests.all {
+            testLogging {
+               events "passed", "skipped", "failed", "standardOut", "standardError"
+               outputs.upToDateWhen {false}
+               showStandardStreams = true
+            }
+        }
+    }
+}
