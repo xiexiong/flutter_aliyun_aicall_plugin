@@ -13,7 +13,7 @@ public class AUIAICallInCallController {
     private static AUIAICallInCallController instance;
     private Context appContext;
     private ARTCAICallEngineImpl engine = null;
-    private String Tag;
+
     private String VoiceAgentId = "f05abdde9e5648efb966c3cb46361c5a";
     private String VoiceAppId = "28383372-04d8-4edd-b629-cf80c3bf2ec9";
     private String VoiceAppKey = "7523e3057a76a46cf1325a54ac493fdb";
