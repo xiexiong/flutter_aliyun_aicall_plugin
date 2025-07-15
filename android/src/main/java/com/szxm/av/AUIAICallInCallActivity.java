@@ -1,6 +1,5 @@
 package com.szxm.av;
 
-
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static com.aliyun.auikits.aiagent.ARTCAICallEngine.AICallErrorCode.AgentConcurrentLimit;
@@ -45,21 +44,21 @@ import com.aliyun.auikits.aiagent.util.Logger;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.OnDismissListener;
 import com.szxm.av.R;
-import com.szxm.av.controller.ARTCAICallController;
-import com.szxm.av.controller.ARTCAICallDepositController;
-import com.szxm.av.service.ForegroundAliveService;
-import com.szxm.av.utils.AUIAICallAgentIdConfig;
-import com.szxm.av.utils.AUIAIConstStrKey;
-import com.szxm.av.utils.AppServiceConst;
-import com.szxm.av.utils.DisplayUtil;
-import com.szxm.av.utils.SettingStorage;
-import com.szxm.av.utils.TimeUtil;
-import com.szxm.av.widget.AICallNoticeDialog;
-import com.szxm.av.widget.AICallSentenceLatencyItem;
-import com.szxm.av.widget.AICallSentenceLatencyViewModel;
-import com.szxm.av.widget.AICallSubtitleMessageItem;
-import com.szxm.av.widget.AICallSubtitleRecyclerViewAdapter;
-import com.szxm.av.widget.AICallSubtitleSpacingItemDecoraion;
+import com.szxm.av.java.controller.ARTCAICallController;
+import com.szxm.av.java.controller.ARTCAICallDepositController;
+import com.szxm.av.java.service.ForegroundAliveService;
+import com.szxm.av.java.utils.AUIAICallAgentIdConfig;
+import com.szxm.av.java.utils.AUIAIConstStrKey;
+import com.szxm.av.java.utils.AppServiceConst;
+import com.szxm.av.java.utils.DisplayUtil;
+import com.szxm.av.java.utils.SettingStorage;
+import com.szxm.av.java.utils.TimeUtil;
+import com.szxm.av.java.widget.AICallNoticeDialog;
+import com.szxm.av.java.widget.AICallSentenceLatencyItem;
+import com.szxm.av.java.widget.AICallSentenceLatencyViewModel;
+import com.szxm.av.java.widget.AICallSubtitleMessageItem;
+import com.szxm.av.java.widget.AICallSubtitleRecyclerViewAdapter;
+import com.szxm.av.java.widget.AICallSubtitleSpacingItemDecoraion;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -73,11 +72,10 @@ public class AUIAICallInCallActivity extends ComponentActivity {
     private final String TAG = AUIAICallInCallActivity.class.getName();
     private static final boolean IS_SUBTITLE_ENABLE = true;
     private static String sUserId = null;
-
+    
     private Handler mHandler = null;
     private boolean mUIProgressing = false;
     private long mCallConnectedMillis = 0;
-
     private ARTCAICallController mARTCAICallController = null;
     private ARTCAICallEngine mARTCAICallEngine = null;
     private ImageView btnCameraDirectionNew = null;
@@ -438,7 +436,6 @@ public class AUIAICallInCallActivity extends ComponentActivity {
         mAiAgentType = ARTCAICallEngine.ARTCAICallAgentType.VoiceAgent;
         String loginUserId = null;
         String loginAuthorization = null;
-        boolean chatSyncConfig = false;
         String rtcAuthToken = null;
         if (null != getIntent() && null != getIntent().getExtras()) {
             aiAgentRegion = getIntent().getExtras().getString(AUIAIConstStrKey.BUNDLE_KEY_AI_AGENT_REGION, null);
@@ -448,7 +445,6 @@ public class AUIAICallInCallActivity extends ComponentActivity {
             rtcAuthToken = getIntent().getExtras().getString(AUIAIConstStrKey.BUNDLE_KEY_RTC_AUTH_TOKEN, null);
             loginUserId = getIntent().getExtras().getString(AUIAIConstStrKey.BUNDLE_KEY_LOGIN_USER_ID, null);
             loginAuthorization = getIntent().getExtras().getString(AUIAIConstStrKey.BUNDLE_KEY_LOGIN_AUTHORIZATION, null);
-            chatSyncConfig = getIntent().getExtras().getBoolean(AUIAIConstStrKey.BUNDLE_KEY_CHAT_SYNC_CONFIG, false);
         }
 
         if(TextUtils.isEmpty(aiAgentRegion)) {
@@ -530,14 +526,13 @@ public class AUIAICallInCallActivity extends ComponentActivity {
                 e.printStackTrace();
             }
         }
-        if(chatSyncConfig) {
-            if(false) {
-                artcaiCallConfig.chatSyncConfig.chatBotAgentId = AUIAICallAgentIdConfig.getAIAgentId(ChatBot, false);
-            }
-            else {
-                artcaiCallConfig.chatSyncConfig.chatBotAgentId = AUIAICallAgentIdConfig.getAIAgentId(ChatBot, false);
-            }
+        //配置ARTCAICallChatSyncConfig参数
+        if(artcaiCallConfig.chatSyncConfig != null) {
+            //关联的消息对话智能体ID
+            artcaiCallConfig.chatSyncConfig.chatBotAgentId = AUIAICallAgentIdConfig.getAIAgentId(ChatBot, false);
+            //业务传入的SessionId
             artcaiCallConfig.chatSyncConfig.sessionId = loginUserId + "_" + artcaiCallConfig.chatSyncConfig.chatBotAgentId;
+            //用户ID，即业务系统用户唯一标识ID
             artcaiCallConfig.chatSyncConfig.receiverId = loginUserId;
         }
 
@@ -1241,6 +1236,8 @@ public class AUIAICallInCallActivity extends ComponentActivity {
                 tvSpeaker.setText(R.string.speaker_on);
             }
         }
+
+
 
         protected void initPushToTalkButton() {
             ViewGroup llPushToTalk = mActionLayer.findViewById(R.id.btn_push_to_talk);

@@ -42,18 +42,19 @@ public class AUIAICallInCallController {
     public void callVoiceAgent(String UserId,String loginAuthorization){
         channelVoiceID = UUID.randomUUID().toString();
         String rtcToken = ArtcTokenUtils.createBase64Token(VoiceAppId,VoiceAppKey,channelVoiceID,UserId);
-        AgentIntent(ARTCAICallEngine.ARTCAICallAgentType.VoiceAgent,VoiceAgentId,rtcToken,UserId,loginAuthorization);
+        AgentIntent(ARTCAICallEngine.ARTCAICallAgentType.VoiceAgent,VoiceAgentId,rtcToken,UserId,loginAuthorization,"","","");
     }
 
     public void callViodeAgent(String UserId,String loginAuthorization){
         channelVideoID = UUID.randomUUID().toString();
         String rtcToken = ArtcTokenUtils.createBase64Token(VideoAppId,VideoAppKey,channelVideoID,UserId);
-        AgentIntent(ARTCAICallEngine.ARTCAICallAgentType.VisionAgent,VideoAgentId,rtcToken,UserId,loginAuthorization);
+        AgentIntent(ARTCAICallEngine.ARTCAICallAgentType.VisionAgent,VideoAgentId,rtcToken,UserId,loginAuthorization,"","","");
     }
 
 
 
-    private void AgentIntent(ARTCAICallEngine.ARTCAICallAgentType agentType,String agentId,String rtcToken,String UserId,String loginAuthorization) {
+    private void AgentIntent(ARTCAICallEngine.ARTCAICallAgentType agentType,String agentId,String rtcToken,String UserId,
+                                String loginAuthorization,String chatBotAgentId ,String sessionId  ,String receiverId ) {
         Intent intent = new Intent(this.appContext, AUIAICallInCallActivity.class);
         intent.putExtra(AUIAIConstStrKey.BUNDLE_KEY_LOGIN_USER_ID, UserId);
         intent.putExtra(AUIAIConstStrKey.BUNDLE_KEY_LOGIN_AUTHORIZATION, loginAuthorization);
@@ -61,6 +62,9 @@ public class AUIAICallInCallController {
         intent.putExtra(AUIAIConstStrKey.BUNDLE_KEY_RTC_AUTH_TOKEN, rtcToken);
         intent.putExtra(AUIAIConstStrKey.BUNDLE_KEY_AI_AGENT_ID, agentId);
         intent.putExtra(AUIAIConstStrKey.BUNDLE_KEY_IS_SHARED_AGENT, false);
+        intent.putExtra(AUIAIConstStrKey.BUNDLE_CHAT_BOT_AGENT_ID, chatBotAgentId);
+        intent.putExtra(AUIAIConstStrKey.BUNDLE_SESSION_ID, sessionId);
+        intent.putExtra(AUIAIConstStrKey.BUNDLE_RECEIVER_ID, receiverId);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         appContext.startActivity(intent);
     }

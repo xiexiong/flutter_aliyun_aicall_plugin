@@ -15,4 +15,7 @@ public class AUIAIConstStrKey {
     public static final String BUNDLE_KEY_PSTN_OUT_NUMBER = "BUNDLE_KEY_PSTN_OUT_NUMBER";
     public static final String BUNDLE_KEY_PSTN_SMART_INTERRUPT = "BUNDLE_KEY_PSTN_SMART_INTERRUPT";
     public static final String BUNDLE_KEY_PSTN_OUT_VOICE = "BUNDLE_KEY_PSTN_OUT_VOICE";
+    public static final String BUNDLE_CHAT_BOT_AGENT_ID = "BUNDLE_CHAT_BOT_AGENT_ID";
+    public static final String BUNDLE_SESSION_ID = "BUNDLE_SESSION_ID";
+    public static final String BUNDLE_RECEIVER_ID = "BUNDLE_RECEIVER_ID";
 }

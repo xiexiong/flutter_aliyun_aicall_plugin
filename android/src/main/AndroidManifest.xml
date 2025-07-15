@@ -1,10 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="com.szxm.av">
+
 <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Av">
         <activity
             android:name="com.szxm.av.AUIAICallInCallActivity"
