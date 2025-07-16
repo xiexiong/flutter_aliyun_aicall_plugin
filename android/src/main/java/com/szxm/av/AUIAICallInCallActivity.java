@@ -44,21 +44,21 @@ import com.aliyun.auikits.aiagent.util.Logger;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.OnDismissListener;
 import com.szxm.av.R;
-import com.szxm.av.java.controller.ARTCAICallController;
-import com.szxm.av.java.controller.ARTCAICallDepositController;
-import com.szxm.av.java.service.ForegroundAliveService;
-import com.szxm.av.java.utils.AUIAICallAgentIdConfig;
-import com.szxm.av.java.utils.AUIAIConstStrKey;
-import com.szxm.av.java.utils.AppServiceConst;
-import com.szxm.av.java.utils.DisplayUtil;
-import com.szxm.av.java.utils.SettingStorage;
-import com.szxm.av.java.utils.TimeUtil;
-import com.szxm.av.java.widget.AICallNoticeDialog;
-import com.szxm.av.java.widget.AICallSentenceLatencyItem;
-import com.szxm.av.java.widget.AICallSentenceLatencyViewModel;
-import com.szxm.av.java.widget.AICallSubtitleMessageItem;
-import com.szxm.av.java.widget.AICallSubtitleRecyclerViewAdapter;
-import com.szxm.av.java.widget.AICallSubtitleSpacingItemDecoraion;
+import com.szxm.av.controller.ARTCAICallController;
+import com.szxm.av.controller.ARTCAICallDepositController;
+import com.szxm.av.service.ForegroundAliveService;
+import com.szxm.av.utils.AUIAICallAgentIdConfig;
+import com.szxm.av.utils.AUIAIConstStrKey;
+import com.szxm.av.utils.AppServiceConst;
+import com.szxm.av.utils.DisplayUtil;
+import com.szxm.av.utils.SettingStorage;
+import com.szxm.av.utils.TimeUtil;
+import com.szxm.av.widget.AICallNoticeDialog;
+import com.szxm.av.widget.AICallSentenceLatencyItem;
+import com.szxm.av.widget.AICallSentenceLatencyViewModel;
+import com.szxm.av.widget.AICallSubtitleMessageItem;
+import com.szxm.av.widget.AICallSubtitleRecyclerViewAdapter;
+import com.szxm.av.widget.AICallSubtitleSpacingItemDecoraion;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -431,12 +431,15 @@ public class AUIAICallInCallActivity extends ComponentActivity {
             }
         });
 
-        String aiAgentRegion = null;
+       String aiAgentRegion = null;
         String aiAgentId = null;
         mAiAgentType = ARTCAICallEngine.ARTCAICallAgentType.VoiceAgent;
         String loginUserId = null;
         String loginAuthorization = null;
         String rtcAuthToken = null;
+        String chatBotAgentId = null;
+        String sessionId = null;
+        String receiverId = null;
         if (null != getIntent() && null != getIntent().getExtras()) {
             aiAgentRegion = getIntent().getExtras().getString(AUIAIConstStrKey.BUNDLE_KEY_AI_AGENT_REGION, null);
             aiAgentId = getIntent().getExtras().getString(AUIAIConstStrKey.BUNDLE_KEY_AI_AGENT_ID, null);
@@ -445,6 +448,9 @@ public class AUIAICallInCallActivity extends ComponentActivity {
             rtcAuthToken = getIntent().getExtras().getString(AUIAIConstStrKey.BUNDLE_KEY_RTC_AUTH_TOKEN, null);
             loginUserId = getIntent().getExtras().getString(AUIAIConstStrKey.BUNDLE_KEY_LOGIN_USER_ID, null);
             loginAuthorization = getIntent().getExtras().getString(AUIAIConstStrKey.BUNDLE_KEY_LOGIN_AUTHORIZATION, null);
+            chatBotAgentId = getIntent().getExtras().getString(AUIAIConstStrKey.BUNDLE_CHAT_BOT_AGENT_ID, null);
+            sessionId = getIntent().getExtras().getString(AUIAIConstStrKey.BUNDLE_SESSION_ID, null);
+            receiverId = getIntent().getExtras().getString(AUIAIConstStrKey.BUNDLE_RECEIVER_ID, null);
         }
 
         if(TextUtils.isEmpty(aiAgentRegion)) {
@@ -527,13 +533,13 @@ public class AUIAICallInCallActivity extends ComponentActivity {
             }
         }
         //配置ARTCAICallChatSyncConfig参数
-        if(artcaiCallConfig.chatSyncConfig != null) {
+        if(!TextUtils.isEmpty(chatBotAgentId) && !TextUtils.isEmpty(sessionId) && !TextUtils.isEmpty(receiverId)) {
             //关联的消息对话智能体ID
-            artcaiCallConfig.chatSyncConfig.chatBotAgentId = AUIAICallAgentIdConfig.getAIAgentId(ChatBot, false);
+            artcaiCallConfig.chatSyncConfig.chatBotAgentId = chatBotAgentId;
             //业务传入的SessionId
-            artcaiCallConfig.chatSyncConfig.sessionId = loginUserId + "_" + artcaiCallConfig.chatSyncConfig.chatBotAgentId;
+            artcaiCallConfig.chatSyncConfig.sessionId = sessionId;
             //用户ID，即业务系统用户唯一标识ID
-            artcaiCallConfig.chatSyncConfig.receiverId = loginUserId;
+            artcaiCallConfig.chatSyncConfig.receiverId = receiverId;
         }
 
         if(TextUtils.isEmpty(artcaiCallConfig.agentConfig.voiceprintConfig.voiceprintId)) {

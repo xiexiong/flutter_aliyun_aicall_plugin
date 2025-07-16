@@ -3,7 +3,7 @@ allprojects {
         maven { url = uri("G:///mavenJar") }
         google()
         mavenCentral()
-        maven { url = uri("https://jitpack.io") }  // 必须添加此行
+        maven { url = uri("https://jitpack.io") }
         
     }
 }
